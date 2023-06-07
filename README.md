@@ -1,24 +1,44 @@
-# README
+# Drafted Advertising
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application connects to the Amazon Advertising API and facilitates bid changes via a rules-based approach.
 
-Things you may want to cover:
+Please update this readme with all information needed to configure, run, and deploy the application.
 
-* Ruby version
+## Coding best practices
 
-* System dependencies
+- Please stick to mainstream technologies and dependencies. Let's discuss exceptions.
 
-* Configuration
+- Tests can wait until after MVP 
 
-* Database creation
+- Please use [trunk-based development and toggles](https://www.infobip.com/developers/blog/trunk-based-development-vs-feature-branching) 
 
-* Database initialization
+- Don’t try to abstract code unless it repeats at least 3 times. [WET before DRY](https://twitter.com/ID_AA_Carmack/status/1646636487558017030)  
 
-* How to run the test suite
+- No staging environment: [https://refactoring.fm/p/do-you-need-staging?s=w](https://refactoring.fm/p/do-you-need-staging?s=w)
 
-* Services (job queues, cache servers, search engines, etc.)
+- Readability is more important than clever code and minor performance gains:
 
-* Deployment instructions
+  **Bad:** 
 
-* ...
+      @users = User.where('created_at >= ?', Time.zone.now.beginning_of_day)
+
+  **Good:** 
+
+      today = Time.zone.now.beginning_of_day
+      @users = User.where('created_at >= ?', today)
+
+  **Bad:**
+
+      def calculate_total(order)
+          order.items.inject(0) { |total, item| total + item.price * item.quantity }
+      end
+
+  **Good:**
+
+      def calculate_total(order)
+        total = 0
+        order.items.each do |item|
+          total += item.price * item.quantity
+        end
+        total
+      end
