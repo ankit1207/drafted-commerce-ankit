@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: campaigns
+#
+#  id                     :bigint           not null, primary key
+#  last_retrieved_at      :datetime
+#  name                   :string
+#  external_id            :string
+#  campaign_type          :string
+#  targeting_type         :string
+#  premium_bid_adjustment :boolean
+#  daily_budget           :string
+#  start_date             :datetime
+#  state                  :string
+#  bidding_strategy       :string
+#  profile_id             :bigint
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value
