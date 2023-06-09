@@ -22,7 +22,11 @@ class Profile < ApplicationRecord
   belongs_to :marketplace
   belongs_to :account
 
-  def active?
+  def inactive?
     inactive_at.present? and Time.now > inactive_at
+  end
+
+  def active?
+    !inactive?
   end
 end
